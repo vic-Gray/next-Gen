@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
   const subdomain = hostname.split(".")[0];
 
   // List of reserved subdomains that should not be treated as tenant subdomains
-  const reservedSubdomains = ["www", "vax", "app", "api", "admin", "localhost"];
+  const reservedSubdomains = ["www", "skulafrica", "app", "api", "admin", "localhost"];
 
   // Check if this is a tenant subdomain
   const isTenantSubdomain =

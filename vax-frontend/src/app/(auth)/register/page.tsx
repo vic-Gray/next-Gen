@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { GraduationCap, Mail, Lock, Eye, EyeOff, Building2, Globe, User } from "lucide-react";
+import { GraduationCap, Mail, Lock, Eye, EyeOff, Building2, Globe, User, ArrowRight, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function RegisterPage() {
     const router = useRouter();
@@ -36,106 +37,106 @@ export default function RegisterPage() {
     const isSubdomainValid = formData.subdomain.length >= 3 && /^[a-z0-9-]+$/.test(formData.subdomain);
 
     return (
-        <div className="min-h-screen flex">
+        <div className="min-h-screen flex bg-black text-white">
             {/* Left Side - Form */}
-            <div className="flex-1 flex items-center justify-center px-6 py-12">
+            <div className="flex-1 flex items-center justify-center px-6 py-12 relative z-10">
                 <div className="w-full max-w-md">
                     <div className="mb-8">
-                        <Link href="/" className="flex items-center space-x-2 mb-8">
-                            <div className="w-10 h-10 gradient-primary rounded-lg flex items-center justify-center">
-                                <GraduationCap className="w-6 h-6 text-white" />
+                        <Link href="/" className="flex items-center space-x-2 mb-8 group">
+                            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors">
+                                <GraduationCap className="w-6 h-6 text-primary" />
                             </div>
-                            <span className="text-2xl font-heading font-bold text-gray-900">Vax</span>
+                            <span className="text-2xl font-bold text-white tracking-tight">Skul Africa</span>
                         </Link>
 
-                        <h1 className="text-3xl font-heading font-bold text-gray-900 mb-2">
+                        <h1 className="text-3xl font-bold text-white mb-2">
                             Register your school
                         </h1>
-                        <p className="text-gray-600">
+                        <p className="text-neutral-400">
                             Get started with a 14-day free trial
                         </p>
                     </div>
 
                     {/* Progress Steps */}
                     <div className="flex items-center mb-8">
-                        <div className={`flex items-center justify-center w-8 h-8 rounded-full ${step >= 1 ? 'gradient-primary text-white' : 'bg-gray-200 text-gray-600'} font-semibold text-sm`}>
+                        <div className={`flex items-center justify-center w-8 h-8 rounded-full ${step >= 1 ? 'bg-primary text-white shadow-[0_0_10px_rgba(229,9,20,0.5)]' : 'bg-neutral-800 text-neutral-500'} font-bold text-sm transition-all duration-300`}>
                             1
                         </div>
-                        <div className={`flex-1 h-1 mx-2 ${step >= 2 ? 'bg-primary-500' : 'bg-gray-200'}`} />
-                        <div className={`flex items-center justify-center w-8 h-8 rounded-full ${step >= 2 ? 'gradient-primary text-white' : 'bg-gray-200 text-gray-600'} font-semibold text-sm`}>
+                        <div className={`flex-1 h-1 mx-2 rounded-full ${step >= 2 ? 'bg-primary' : 'bg-neutral-800'} transition-all duration-300`} />
+                        <div className={`flex items-center justify-center w-8 h-8 rounded-full ${step >= 2 ? 'bg-primary text-white shadow-[0_0_10px_rgba(229,9,20,0.5)]' : 'bg-neutral-800 text-neutral-500'} font-bold text-sm transition-all duration-300`}>
                             2
                         </div>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {step === 1 && (
-                            <>
+                            <div className="space-y-6 animate-fade-in">
                                 <div>
-                                    <label htmlFor="schoolName" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="schoolName" className="block text-sm font-medium text-neutral-300 mb-2">
                                         School Name
                                     </label>
-                                    <div className="relative">
-                                        <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                    <div className="relative group">
+                                        <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-primary transition-colors" />
                                         <input
                                             id="schoolName"
                                             type="text"
                                             required
                                             value={formData.schoolName}
                                             onChange={(e) => setFormData({ ...formData, schoolName: e.target.value })}
-                                            className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                            className="w-full pl-11 pr-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-neutral-600 transition-all"
                                             placeholder="Modern High School"
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label htmlFor="subdomain" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="subdomain" className="block text-sm font-medium text-neutral-300 mb-2">
                                         Choose your subdomain
                                     </label>
-                                    <div className="relative">
-                                        <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                    <div className="relative group">
+                                        <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-primary transition-colors" />
                                         <input
                                             id="subdomain"
                                             type="text"
                                             required
                                             value={formData.subdomain}
                                             onChange={(e) => setFormData({ ...formData, subdomain: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') })}
-                                            className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                            className="w-full pl-11 pr-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-neutral-600 transition-all"
                                             placeholder="modernhighschool"
                                         />
                                     </div>
-                                    <p className="mt-2 text-sm text-gray-500">
+                                    <p className="mt-2 text-sm text-neutral-500">
                                         Your school will be accessible at:{" "}
-                                        <span className={`font-mono ${isSubdomainValid ? 'text-primary-600' : 'text-gray-400'}`}>
-                                            {formData.subdomain || 'yourschool'}.vax.com
+                                        <span className={`font-mono ${isSubdomainValid ? 'text-primary' : 'text-neutral-400'}`}>
+                                            {formData.subdomain || 'yourschool'}.skulafrica.com
                                         </span>
                                     </p>
                                 </div>
-                            </>
+                            </div>
                         )}
 
                         {step === 2 && (
-                            <>
+                            <div className="space-y-6 animate-fade-in">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                                        <label htmlFor="firstName" className="block text-sm font-medium text-neutral-300 mb-2">
                                             First Name
                                         </label>
-                                        <div className="relative">
-                                            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                        <div className="relative group">
+                                            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-primary transition-colors" />
                                             <input
                                                 id="firstName"
                                                 type="text"
                                                 required
                                                 value={formData.firstName}
                                                 onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                                                className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                                className="w-full pl-11 pr-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-neutral-600 transition-all"
                                                 placeholder="John"
                                             />
                                         </div>
                                     </div>
                                     <div>
-                                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                                        <label htmlFor="lastName" className="block text-sm font-medium text-neutral-300 mb-2">
                                             Last Name
                                         </label>
                                         <input
@@ -144,49 +145,49 @@ export default function RegisterPage() {
                                             required
                                             value={formData.lastName}
                                             onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                            className="w-full px-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-neutral-600 transition-all"
                                             placeholder="Doe"
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="email" className="block text-sm font-medium text-neutral-300 mb-2">
                                         Email address
                                     </label>
-                                    <div className="relative">
-                                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                    <div className="relative group">
+                                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-primary transition-colors" />
                                         <input
                                             id="email"
                                             type="email"
                                             required
                                             value={formData.email}
                                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                            className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                            className="w-full pl-11 pr-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-neutral-600 transition-all"
                                             placeholder="john@school.com"
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="password" className="block text-sm font-medium text-neutral-300 mb-2">
                                         Password
                                     </label>
-                                    <div className="relative">
-                                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                    <div className="relative group">
+                                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-primary transition-colors" />
                                         <input
                                             id="password"
                                             type={showPassword ? "text" : "password"}
                                             required
                                             value={formData.password}
                                             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                            className="w-full pl-11 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                            className="w-full pl-11 pr-12 py-3 bg-neutral-900 border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-neutral-600 transition-all"
                                             placeholder="••••••••"
                                         />
                                         <button
                                             type="button"
                                             onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white transition-colors"
                                         >
                                             {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                                         </button>
@@ -194,70 +195,75 @@ export default function RegisterPage() {
                                 </div>
 
                                 <div>
-                                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-neutral-300 mb-2">
                                         Confirm Password
                                     </label>
-                                    <div className="relative">
-                                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                    <div className="relative group">
+                                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-primary transition-colors" />
                                         <input
                                             id="confirmPassword"
                                             type={showPassword ? "text" : "password"}
                                             required
                                             value={formData.confirmPassword}
                                             onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                                            className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                            className="w-full pl-11 pr-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-neutral-600 transition-all"
                                             placeholder="••••••••"
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label className="flex items-start">
+                                    <label className="flex items-start cursor-pointer">
                                         <input
                                             type="checkbox"
                                             required
                                             checked={formData.agreeToTerms}
                                             onChange={(e) => setFormData({ ...formData, agreeToTerms: e.target.checked })}
-                                            className="w-4 h-4 mt-1 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+                                            className="w-4 h-4 mt-1 text-primary bg-neutral-900 border-neutral-700 rounded focus:ring-primary focus:ring-offset-0"
                                         />
-                                        <span className="ml-2 text-sm text-gray-600">
+                                        <span className="ml-2 text-sm text-neutral-400">
                                             I agree to the{" "}
-                                            <Link href="/terms" className="text-primary-600 hover:text-primary-700">
+                                            <Link href="/terms" className="text-primary hover:text-primary/80">
                                                 Terms of Service
                                             </Link>{" "}
                                             and{" "}
-                                            <Link href="/privacy" className="text-primary-600 hover:text-primary-700">
+                                            <Link href="/privacy" className="text-primary hover:text-primary/80">
                                                 Privacy Policy
                                             </Link>
                                         </span>
                                     </label>
                                 </div>
-                            </>
+                            </div>
                         )}
 
                         <div className="flex gap-4">
                             {step === 2 && (
-                                <button
+                                <Button
                                     type="button"
                                     onClick={() => setStep(1)}
-                                    className="flex-1 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-all"
+                                    variant="outline"
+                                    className="flex-1 py-6 border-neutral-700 text-white hover:bg-neutral-800 hover:text-white rounded-lg font-bold"
                                 >
-                                    Back
-                                </button>
+                                    <ArrowLeft className="mr-2 h-5 w-5" /> Back
+                                </Button>
                             )}
-                            <button
+                            <Button
                                 type="submit"
-                                className="flex-1 py-3 gradient-primary text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
+                                className="flex-1 py-6 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold text-lg shadow-[0_0_20px_-5px_rgba(229,9,20,0.3)] hover:shadow-[0_0_30px_-5px_rgba(229,9,20,0.5)] transition-all duration-300"
                             >
-                                {step === 1 ? "Continue" : "Create Account"}
-                            </button>
+                                {step === 1 ? (
+                                    <>Continue <ArrowRight className="ml-2 h-5 w-5" /></>
+                                ) : (
+                                    "Create Account"
+                                )}
+                            </Button>
                         </div>
                     </form>
 
-                    <div className="mt-6 text-center">
-                        <p className="text-sm text-gray-600">
+                    <div className="mt-8 text-center">
+                        <p className="text-sm text-neutral-400">
                             Already have an account?{" "}
-                            <Link href="/login" className="text-primary-600 hover:text-primary-700 font-semibold">
+                            <Link href="/login" className="text-primary hover:text-primary/80 font-semibold transition-colors">
                                 Sign in
                             </Link>
                         </p>
@@ -266,27 +272,28 @@ export default function RegisterPage() {
             </div>
 
             {/* Right Side - Illustration */}
-            <div className="hidden lg:flex flex-1 gradient-hero items-center justify-center p-12">
-                <div className="max-w-md">
-                    <div className="w-24 h-24 gradient-secondary rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
-                        <Building2 className="w-12 h-12 text-white" />
+            <div className="hidden lg:flex flex-1 bg-neutral-900 relative overflow-hidden items-center justify-center p-12">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-neutral-900 to-neutral-950" />
+                <div className="relative z-10 max-w-md">
+                    <div className="w-24 h-24 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-primary/20 shadow-[0_0_40px_-10px_rgba(229,9,20,0.3)]">
+                        <Building2 className="w-12 h-12 text-primary" />
                     </div>
-                    <h2 className="text-3xl font-heading font-bold text-gray-900 mb-4 text-center">
-                        Join 500+ schools already using Vax
+                    <h2 className="text-3xl font-bold text-white mb-4 text-center">
+                        Join 500+ schools already using Skul Africa
                     </h2>
-                    <p className="text-lg text-gray-600 text-center mb-8">
+                    <p className="text-lg text-neutral-400 text-center mb-8">
                         Start managing your school more efficiently with our all-in-one platform.
                     </p>
 
                     <div className="space-y-4">
                         {benefits.map((benefit, index) => (
-                            <div key={index} className="flex items-start gap-3 p-4 bg-white/60 backdrop-blur-sm rounded-xl">
-                                <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <benefit.icon className="w-4 h-4 text-white" />
+                            <div key={index} className="flex items-start gap-3 p-4 bg-black/40 backdrop-blur-sm rounded-xl border border-white/5">
+                                <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0 text-primary">
+                                    <benefit.icon className="w-4 h-4" />
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-gray-900">{benefit.title}</h3>
-                                    <p className="text-sm text-gray-600">{benefit.description}</p>
+                                    <h3 className="font-semibold text-white">{benefit.title}</h3>
+                                    <p className="text-sm text-neutral-400">{benefit.description}</p>
                                 </div>
                             </div>
                         ))}
