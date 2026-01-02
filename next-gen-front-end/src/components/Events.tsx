@@ -28,7 +28,7 @@ School: ${formData.school}
 Expectations: ${formData.expectations}`
     );
 
-    window.location.href = `mailto:skultechfficial@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:nextgenelevationcircle@gmail.com?subject=${subject}&body=${body}`;
 
     alert("Your registration is ready to send. Please complete in your email client.");
   };

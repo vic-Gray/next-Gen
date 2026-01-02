@@ -31,7 +31,7 @@ School: ${formData.school}
 Level: ${formData.level}`
     );
 
-    window.location.href = `mailto:skultechfficial@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:nextgenelevationcircle@gmail.com?subject=${subject}&body=${body}`;
 
     // Show celebration screen
     setSubmitted(true);
